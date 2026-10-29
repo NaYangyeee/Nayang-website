@@ -72,6 +72,19 @@ export function Header() {
             ))}
             <li>
               <Link
+                to="/agents"
+                className={cn(
+                  'rounded-sm px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200',
+                  pathname === '/agents'
+                    ? 'font-medium text-sakura-ink'
+                    : 'text-ink-2 hover:text-sakura-ink',
+                )}
+              >
+                {ui('nav.agents')}
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/badminton"
                 className={cn(
                   'rounded-sm px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200',
@@ -81,6 +94,19 @@ export function Header() {
                 )}
               >
                 {ui('nav.badminton')}
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/books"
+                className={cn(
+                  'rounded-sm px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200',
+                  pathname === '/books'
+                    ? 'font-medium text-sakura-ink'
+                    : 'text-ink-2 hover:text-sakura-ink',
+                )}
+              >
+                {ui('nav.books')}
               </Link>
             </li>
           </ul>
@@ -159,11 +185,29 @@ export function Header() {
               ))}
               <li>
                 <Link
+                  to="/agents"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-3 text-[0.9375rem] text-ink transition-colors hover:bg-sakura-soft hover:text-sakura-deep"
+                >
+                  {ui('nav.agents')}
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/badminton"
                   onClick={() => setOpen(false)}
                   className="block px-4 py-3 text-[0.9375rem] text-ink transition-colors hover:bg-sakura-soft hover:text-sakura-deep"
                 >
                   {ui('nav.badminton')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/books"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-3 text-[0.9375rem] text-ink transition-colors hover:bg-sakura-soft hover:text-sakura-deep"
+                >
+                  {ui('nav.books')}
                 </Link>
               </li>
               <li className="mt-1 border-t border-line pt-1">

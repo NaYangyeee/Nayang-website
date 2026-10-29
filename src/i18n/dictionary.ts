@@ -79,6 +79,32 @@ export const ui = {
     en: 'Just one part of the story — the work is on the main page',
   },
 
+  'nav.books': { zh: '书架', en: 'Books' },
+  'nav.agents': { zh: '智能体笔记', en: 'Agents' },
+
+  'books.eyebrow': { zh: '书房', en: 'The study' },
+  'books.title': { zh: '书架', en: 'The bookshelf' },
+  'books.lede': {
+    zh: '摆在手边的书。点开一本看它为什么在这里——慢慢补。',
+    en: 'The books within reach. Open one to see why it earns its shelf — growing slowly.',
+  },
+  'books.countNote': { zh: '本，还会继续增加', en: 'books, and counting' },
+  'books.noNote': { zh: '这本书的笔记待补。', en: 'A note for this one is still being written.' },
+  'books.beyondTitle': { zh: '书架', en: 'The bookshelf' },
+  'books.beyondText': {
+    zh: '四大名著和几本反复读的外国小说。每本一句话，说它为什么还摆在手边。',
+    en: 'The four Chinese classics and a shelf of re-read foreign novels, one line each on why they stay within reach.',
+  },
+
+  'agents.eyebrow': { zh: '工具笔记', en: 'Field notes' },
+  'agents.fresh': { zh: '新', en: 'New' },
+  'agents.strengths': { zh: '强在哪', en: 'Where it is strong' },
+  'agents.usage': { zh: '我的用法', en: 'How I use it' },
+  'agents.note': {
+    zh: '以上全是个人使用笔记，不是评测也不是排名。工具会更新，笔记也会跟着改。',
+    en: 'All of the above is personal field notes — not a review, not a ranking. The tools update, and so will these.',
+  },
+
   'beyond.eyebrow': { zh: '多面', en: 'Beyond work' },
   'beyond.title': { zh: '工作之外的崔力娜', en: 'Lina, outside the résumé' },
   'beyond.lede': {
