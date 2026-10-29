@@ -14,6 +14,7 @@ export const ui = {
   'nav.home': { zh: '首页', en: 'Home' },
   'nav.lang': { zh: '语言', en: 'Language' },
   'nav.contact': { zh: '联系我', en: 'Get in touch' },
+  'nav.badminton': { zh: '羽球', en: 'Badminton' },
 
   'hero.scroll': { zh: '向下浏览', en: 'Scroll' },
   'hero.viewWork': { zh: '看项目', en: 'See the work' },
@@ -60,6 +61,41 @@ export const ui = {
   },
   'contact.emailLabel': { zh: '邮箱', en: 'Email' },
   'contact.githubLabel': { zh: 'GitHub', en: 'GitHub' },
+
+  'badminton.eyebrow': { zh: '工作之外', en: 'Beyond the desk' },
+  'badminton.story': { zh: '来路', en: 'The story' },
+  'badminton.gallery': { zh: '图集', en: 'Gallery' },
+  'badminton.galleryNote': {
+    zh: '照片陆续补充中',
+    en: 'Photos being added',
+  },
+  'badminton.coming': { zh: '待补', en: 'Coming' },
+  'badminton.photo': { zh: '照片', en: 'Photo' },
+  'badminton.prev': { zh: '上一张', en: 'Previous' },
+  'badminton.next': { zh: '下一张', en: 'Next' },
+  'badminton.back': { zh: '回到主页', en: 'Back to the main site' },
+  'badminton.backNote': {
+    zh: '这里只是生活的一部分 —— 工作经历在主页',
+    en: 'Just one part of the story — the work is on the main page',
+  },
+
+  'beyond.eyebrow': { zh: '多面', en: 'Beyond work' },
+  'beyond.title': { zh: '工作之外的崔力娜', en: 'Lina, outside the résumé' },
+  'beyond.lede': {
+    zh: '不喧宾夺主 —— 简历在楼上，这里放一两件她真正在乎的事。',
+    en: 'Deliberately small. The résumé is upstairs; this is a door to the rest of her.',
+  },
+  'beyond.badmintonTitle': { zh: '羽球生涯', en: 'Badminton, seriously' },
+  'beyond.badmintonText': {
+    zh: '打得最久、最认真的一项运动。比赛、训练、球拍和那些照片，在另一个场子里。',
+    en: 'The sport she has played longest and most seriously. Matches, training, rackets and photos live on their own court.',
+  },
+  'beyond.go': { zh: '进去看看', en: 'Step in' },
+
+  'path.posterCaption': {
+    zh: '品牌海报 · 插画风格，非本人照片',
+    en: 'Brand poster · illustration, not a portrait',
+  },
 
   'footer.built': {
     zh: '使用 React、TypeScript 与 Vite 构建。静态托管，无任何追踪。',

@@ -3,6 +3,7 @@
 @import '@fontsource-variable/playfair-display/index.css';
 @import '@fontsource-variable/inter/index.css';
 @import '@fontsource-variable/jetbrains-mono/index.css';
+@import '@fontsource-variable/oswald/index.css';
 
 /* ===========================================================================
    DESIGN SYSTEM — 崔力娜
@@ -83,6 +84,11 @@
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, var(--font-cjk);
   --font-mono:
     'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace, var(--font-cjk);
+  /* Condensed grotesque for the sports page. The single fastest way to make
+     a layout read "athletic" instead of "article" is the type; Oswald is the
+     classic of the genre and this site has exactly one page that earns it. */
+  --font-sport:
+    'Oswald Variable', 'Oswald', 'Arial Narrow', 'Inter Variable', sans-serif, var(--font-cjk);
 
   /* --- Motion --- */
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
@@ -91,7 +97,7 @@
   --breakpoint-3xl: 112rem;
 }
 
-/* The single dark band, used for the contact panel. Same tokens redefined,
+/* The dark band, used for the contact panel. Same tokens redefined,
    so a component written once renders correctly in both. */
 .tone-ink {
   --color-surface: #141418;
@@ -111,6 +117,32 @@
      sibling, the same move Apple makes with its blue in dark mode. */
   --color-sakura-ink: #f3a7bd;
   --color-sakura-soft: #2a1a21;
+  --color-sky-ink: #8cc4e6;
+  --color-sky-soft: #15222b;
+}
+
+/* The badminton page's tone: court at night. The same utilities keep
+   working, but the accent remaps from sakura to court green, so the page
+   feels like a different world (a night match) while staying one system.
+   Every value here clears the same contrast targets as the light set. */
+.tone-court {
+  --color-surface: #0e100d;
+  --color-surface-2: #151814;
+  --color-surface-3: #1c201a;
+  --color-surface-sunken: #0a0c09;
+
+  --color-ink: #f2f4ee;
+  --color-ink-2: #b7bfb1;
+  --color-ink-3: #7d8678;
+
+  --color-line: #2b3328;
+  --color-line-2: #20261d;
+  --color-line-hard: #d9e0d2;
+
+  --color-sakura: #7ba832;
+  --color-sakura-ink: #b7e06a;
+  --color-sakura-soft: #1c2613;
+  --color-sakura-deep: #d8f2a0;
   --color-sky-ink: #8cc4e6;
   --color-sky-soft: #15222b;
 }

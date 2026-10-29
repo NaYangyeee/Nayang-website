@@ -33,15 +33,21 @@ async function main() {
 
   const lastmod = new Date().toISOString().slice(0, 10);
 
+  const url = (path, priority) =>
+    [
+      '  <url>',
+      `    <loc>${SITE_URL}${path}</loc>`,
+      `    <lastmod>${lastmod}</lastmod>`,
+      '    <changefreq>monthly</changefreq>',
+      `    <priority>${priority}</priority>`,
+      '  </url>',
+    ].join('\n');
+
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    '  <url>',
-    `    <loc>${SITE_URL}/</loc>`,
-    `    <lastmod>${lastmod}</lastmod>`,
-    '    <changefreq>monthly</changefreq>',
-    '    <priority>1.0</priority>',
-    '  </url>',
+    url('/', '1.0'),
+    url('/badminton', '0.7'),
     '</urlset>',
     '',
   ].join('\n');

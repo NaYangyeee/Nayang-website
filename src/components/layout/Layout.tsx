@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { useLocale } from '@/i18n/LocaleProvider';
 
-export function Layout({ children }: { children: ReactNode }) {
+export function Layout() {
   const { ui } = useLocale();
 
   return (
@@ -23,7 +23,7 @@ export function Layout({ children }: { children: ReactNode }) {
 
       <Header />
       <main id="main" className="flex-1" style={{ paddingTop: 'var(--header-h)' }}>
-        {children}
+        <Outlet />
       </main>
       <Footer />
     </div>

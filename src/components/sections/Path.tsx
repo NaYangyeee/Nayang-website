@@ -46,14 +46,35 @@ export function Path() {
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-[1.4fr_1fr] lg:gap-14">
           <Reveal>
             <p className="max-w-2xl text-[1.0625rem] leading-relaxed text-ink">
               {tl(profile.statement)}
             </p>
           </Reveal>
 
-          <div />
+          {/*
+            Her brand poster, framed like everything else on the page and
+            captioned for what it is. It is illustration, not a photograph —
+            the caption exists so the two can never be confused, because a
+            stylised poster read as a portrait of the author is a different,
+            and worse, claim.
+          */}
+          <Reveal>
+            <figure className="mx-auto max-w-xs lg:mx-0 lg:ml-auto">
+              <div className="card overflow-hidden">
+                <img
+                  src="/assets/poster.jpg"
+                  alt={ui('path.posterCaption')}
+                  loading="lazy"
+                  className="block aspect-square w-full object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-center font-mono text-[0.6875rem] tracking-wide text-ink-3">
+                {ui('path.posterCaption')}
+              </figcaption>
+            </figure>
+          </Reveal>
         </div>
 
         <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-14">

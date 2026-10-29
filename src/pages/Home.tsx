@@ -2,6 +2,7 @@ import { Hero } from '@/components/sections/Hero';
 import { Work } from '@/components/sections/Work';
 import { Skills } from '@/components/sections/Skills';
 import { Path } from '@/components/sections/Path';
+import { Beyond } from '@/components/sections/Beyond';
 import { Contact } from '@/components/sections/Contact';
 import { profile } from '@/content/site';
 import { useSeo } from '@/hooks/useSeo';
@@ -33,6 +34,7 @@ export default function Home() {
       <Work />
       <Skills />
       <Path />
+      <Beyond />
       <Contact />
     </>
   );
