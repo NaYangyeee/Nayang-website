@@ -6,18 +6,28 @@
   // unconfigured project and runs its interactive setup, which in a CI build
   // silently falls back to defaults and regenerates a config on every deploy.
   // Pinning it here makes deploys deterministic and reviewable.
+  //
+  // Field placement matters, learned from the first failed deploy:
+  //   - `not_found_handling` lives INSIDE `assets`, not at the top level —
+  //     at the top level wrangler reports "Unexpected fields".
+  //   - no `binding` on the assets block — a binding implies a Worker script
+  //     exists to receive it, and an assets-only Worker fails the check.
   // ===========================================================================
-  "$schema": "node_modules/wrangler/config-schema.json",
+
+  "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "nayang-website",
-  "compatibility_date": "2026-10-01",
+  "compatibility_date": "2026-10-29",
 
   "assets": {
+    // Vite's build output. Must match the `build` script in package.json.
     "directory": "./dist",
-    "binding": "ASSETS"
-  },
 
-  // This is a single-page site, so there is nothing to catch — but declaring
-  // it costs nothing and keeps the config identical in shape to the deploy
-  // path this project's tooling was already exercised on.
-  "not_found_handling": "none"
+    // This is a single-page site, so there are no deep routes to catch —
+    // but declaring it costs nothing and keeps the config shape identical
+    // to the deploy path this project's tooling was already exercised on.
+    "not_found_handling": "none"
+  }
+
+  // No "main": this deploys static assets only. There is no Worker script,
+  // no server-side code, and nothing that could need a secret.
 }
