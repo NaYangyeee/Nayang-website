@@ -90,7 +90,7 @@ export const agents: Agent[] = [
       zh: '它不是开箱即用的产品——是个需要你自己动手的框架。没有它替你挡住的那些脏活，得你自己想清楚。',
       en: 'Not a product you can use out of the box — it is a framework you assemble. All the dirty work it refuses to hide from you is yours to reason through.',
     },
-    logo: '/assets/logos/hermes.png',
+    logo: '/assets/logos/hermes-girl.svg',
     install: {
       desktop: [
         { emoji: '🐙', title: { zh: '克隆仓库', en: 'Clone the repo' }, body: { zh: 'git clone https://github.com/NousResearch/hermes-agent', en: 'git clone https://github.com/NousResearch/hermes-agent' } },
@@ -104,8 +104,14 @@ export const agents: Agent[] = [
       { label: 'GitHub', href: 'https://github.com/NousResearch/hermes-agent' },
     ],
     screenshots: [
-      { caption: { zh: '它的 Skill 目录结构', en: 'Its skill directory layout' } },
-      { caption: { zh: '示例会话截图', en: 'An example session' } },
+      {
+        caption: { zh: '官方仓库横幅', en: 'The official repo banner' },
+        src: '/assets/shots/hermes-banner.png',
+      },
+      {
+        caption: { zh: '官方 GitHub 仓库 · 2026-10-29 截图', en: 'Official GitHub repo · captured 2026-10-29' },
+        src: '/assets/shots/hermes-github.png',
+      },
     ],
   },
   {
@@ -201,8 +207,11 @@ export const agents: Agent[] = [
       { label: '网页版', href: 'https://claude.ai/code' },
     ],
     screenshots: [
+      {
+        caption: { zh: '官方文档页 · 2026-10-29 截图', en: 'Official docs page · captured 2026-10-29' },
+        src: '/assets/shots/claude-docs.png',
+      },
       { caption: { zh: '终端里的会话', en: 'A session in the terminal' } },
-      { caption: { zh: '权限确认的瞬间', en: 'The permission prompt' } },
       { caption: { zh: '它自己画的执行计划', en: 'A plan it drafted itself' } },
     ],
   },
@@ -255,8 +264,11 @@ export const agents: Agent[] = [
       { label: '开发者文档', href: 'https://developers.openai.com/codex' },
     ],
     screenshots: [
+      {
+        caption: { zh: '官方 GitHub 仓库 · 2026-10-29 截图', en: 'Official GitHub repo · captured 2026-10-29' },
+        src: '/assets/shots/codex-github.png',
+      },
       { caption: { zh: '云任务的面板', en: 'The cloud task panel' } },
-      { caption: { zh: '它写的一次性脚本', en: 'A one-off script it wrote' } },
     ],
   },
   {
@@ -306,7 +318,10 @@ export const agents: Agent[] = [
     },
     links: [{ label: '官网', href: 'https://workbuddy.cn' }],
     screenshots: [
-      { caption: { zh: '任务拆解面板', en: 'The task decomposition panel' } },
+      {
+        caption: { zh: '官网首页 · 2026-10-29 截图', en: 'Official homepage · captured 2026-10-29' },
+        src: '/assets/shots/workbuddy-home.png',
+      },
       { caption: { zh: '交付物验收界面', en: 'The deliverable acceptance view' } },
       { caption: { zh: '微信里派活的场景', en: 'Dispatching from WeChat' } },
     ],

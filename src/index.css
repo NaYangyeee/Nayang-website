@@ -207,6 +207,13 @@
     outline-offset: 2px;
     border-radius: 2px;
   }
+
+  /* Anchor targets stop below the fixed header instead of underneath it.
+     Without this, "scroll to #work" parks the section title behind the
+     translucent bar. */
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 1rem);
+  }
 }
 
 /* ---------------------------------------------------------------------------
