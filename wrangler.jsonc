@@ -22,10 +22,14 @@
     // Vite's build output. Must match the `build` script in package.json.
     "directory": "./dist",
 
-    // This is a single-page site, so there are no deep routes to catch —
-    // but declaring it costs nothing and keeps the config shape identical
-    // to the deploy path this project's tooling was already exercised on.
-    "not_found_handling": "none"
+    // The site grew real routes — /badminton, /books, /agents/:slug,
+    // /product — and they are all client-side. On a hard refresh the
+    // server has no file at /badminton, and with "none" it answers 404:
+    // the page worked until someone refreshed it, then broke. SPA
+    // handling serves index.html for any unmatched path, which is what
+    // makes deep links and refreshes work. Real files under /assets/*
+    // are still served as themselves — this only catches misses.
+    "not_found_handling": "single-page-application"
   }
 
   // No "main": this deploys static assets only. There is no Worker script,
