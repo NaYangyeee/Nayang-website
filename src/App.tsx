@@ -5,6 +5,7 @@ import Home from '@/pages/Home';
 import Badminton from '@/pages/Badminton';
 import Books from '@/pages/Books';
 import Agents from '@/pages/Agents';
+import AgentDetail from '@/pages/AgentDetail';
 
 /**
  * Two pages: the career document and the badminton court.
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="badminton" element={<Badminton />} />
             <Route path="books" element={<Books />} />
             <Route path="agents" element={<Agents />} />
+            <Route path="agents/:slug" element={<AgentDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>

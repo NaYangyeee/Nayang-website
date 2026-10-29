@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { agents, intro } from '@/content/agents';
 import type { Agent } from '@/content/agents';
 import { profile } from '@/content/site';
@@ -16,15 +17,39 @@ function AgentCard({ agent }: { agent: Agent }) {
   const { ui, tl } = useLocale();
 
   return (
-    <article className="card flex h-full flex-col p-6 md:p-8">
+    <Link
+      to={`/agents/${agent.slug}`}
+      className="card group flex h-full flex-col p-6 transition-[transform,box-shadow] duration-200 ease-out-expo hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_var(--color-sakura-soft)] md:p-8"
+    >
       <header>
-        <div className="flex flex-wrap items-center gap-2">
-          <h2 className="font-display text-[1.375rem] font-bold text-ink md:text-[1.5rem]">
-            {agent.name}
-          </h2>
-          {agent.fresh && <span className="chip chip-pink">{ui('agents.fresh')}</span>}
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <span className="flex size-11 shrink-0 items-center justify-center border border-line-hard bg-surface">
+              {/* The logo darkens on hover — the one visual move the brief
+                  asked for, and it says "this opens" without a label. */}
+              <img
+                src={agent.logo}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="size-7 object-contain transition-[filter] duration-200 group-hover:brightness-[0.55]"
+              />
+            </span>
+            <div className="flex flex-wrap items-center gap-2">
+              <h2 className="font-display text-[1.25rem] font-bold text-ink md:text-[1.375rem]">
+                {agent.name}
+              </h2>
+              {agent.fresh && <span className="chip chip-pink">{ui('agents.fresh')}</span>}
+            </div>
+          </div>
+          <span
+            aria-hidden="true"
+            className="mt-1 font-sport text-[1.125rem] leading-none text-ink-3 transition-[color,transform] duration-200 group-hover:translate-x-1 group-hover:text-sakura-ink"
+          >
+            →
+          </span>
         </div>
-        <p className="mt-1.5 font-mono text-[0.75rem] text-ink-3">
+        <p className="mt-2 font-mono text-[0.75rem] text-ink-3">
           {tl(agent.by)} · {tl(agent.kind)}
         </p>
         <p className="mt-4 text-[0.9375rem] leading-relaxed text-sakura-ink">{tl(agent.line)}</p>
@@ -59,7 +84,7 @@ function AgentCard({ agent }: { agent: Agent }) {
           {tl(agent.caveat)}
         </p>
       </div>
-    </article>
+    </Link>
   );
 }
 

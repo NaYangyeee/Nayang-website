@@ -8,12 +8,23 @@ import type { L } from './types';
  * what does it actually own, what does it hand to the model, and where does
  * it fail? What is written below is what I would tell a colleague.
  *
- * Everything here is a working impression, not a spec sheet. Two of the
- * entries (WorkBuddy, Muse) are new to me; those say so plainly and will
- * grow as I actually use them.
+ * Logos: official files where the official site served one (Claude Code,
+ * Codex, Hermes Agent, WorkBuddy, Muse); CodeWhale carries an original
+ * placeholder mark until the official asset arrives. Install steps are
+ * written from current public docs — software moves fast, so every page
+ * says "以官方文档为准" and links it.
  */
 
+export type InstallStep = {
+  /** Sticker. The tutorial voice is deliberately light — a wall of
+      terminal commands does not make anyone want to try a tool. */
+  emoji: string;
+  title: L;
+  body?: L;
+};
+
 export type Agent = {
+  slug: string;
   name: string;
   /** 出处 — who builds it. */
   by: L;
@@ -28,20 +39,30 @@ export type Agent = {
   caveat: L;
   /** New to the shelf — shows a "新" chip. */
   fresh?: boolean;
+  logo: string;
+  install: {
+    desktop: InstallStep[];
+    /** null = no mobile story worth telling; the page says so honestly. */
+    mobile: InstallStep[] | null;
+  };
+  links: { label: string; href: string }[];
+  /** Screenshots to come — captions are the brief for the photos she sends. */
+  screenshots: { caption: L; src?: string }[];
 };
 
 export const intro = {
   title: { zh: '智能体笔记', en: 'Agent notes' } satisfies L,
   lede: {
-    zh: '我做的系统就是 Agent，所以这些工具对我不是新闻，是生产环境。它们每一家都把"上下文、工具、循环"这三件事重新切分了一遍——看它们怎么切，比看它们的分数有意思。以下是我的使用笔记，按我接触的顺序排。',
-    en: 'I build agent systems for a living, so these tools are not news to me — they are the production floor. Each of them re-divides the same three things — context, tools, loops — in its own way, and watching how they cut is more interesting than any benchmark. Notes below, in the order I met them.',
+    zh: '我做的系统就是 Agent，所以这些工具对我不是新闻，是生产环境。它们每一家都把"上下文、工具、循环"这三件事重新切分了一遍——看它们怎么切，比看它们的分数有意思。以下是我的使用笔记，按我接触的顺序排。点进任何一张卡看安装和细节。',
+    en: 'I build agent systems for a living, so these tools are not news to me — they are the production floor. Each of them re-divides the same three things — context, tools, loops — in its own way, and watching how they cut is more interesting than any benchmark. Notes below, in the order I met them; open any card for install and detail.',
   } satisfies L,
 };
 
 export const agents: Agent[] = [
   {
+    slug: 'hermes',
     name: 'Hermes Agent',
-    by: { zh: '开源 Agent 框架', en: 'Open-source agent framework' },
+    by: { zh: 'Nous Research · 开源', en: 'Nous Research · open source' },
     kind: { zh: '框架 · 学习对象', en: 'Framework · study object' },
     line: {
       zh: '模块分层最干净的小型 Agent 框架，Skill 和 Memory 的设计是它的招牌。',
@@ -69,8 +90,26 @@ export const agents: Agent[] = [
       zh: '它不是开箱即用的产品——是个需要你自己动手的框架。没有它替你挡住的那些脏活，得你自己想清楚。',
       en: 'Not a product you can use out of the box — it is a framework you assemble. All the dirty work it refuses to hide from you is yours to reason through.',
     },
+    logo: '/assets/logos/hermes.png',
+    install: {
+      desktop: [
+        { emoji: '🐙', title: { zh: '克隆仓库', en: 'Clone the repo' }, body: { zh: 'git clone https://github.com/NousResearch/hermes-agent', en: 'git clone https://github.com/NousResearch/hermes-agent' } },
+        { emoji: '🐍', title: { zh: '开个虚拟环境', en: 'Make a venv' }, body: { zh: 'python -m venv .venv，然后激活它——别污染系统环境', en: 'python -m venv .venv, then activate it — do not pollute the system env' } },
+        { emoji: '📦', title: { zh: '安装依赖', en: 'Install' }, body: { zh: 'pip install -e .，等它把依赖捋一遍', en: 'pip install -e ., and let it sort its dependencies' } },
+        { emoji: '🧪', title: { zh: '跑通示例', en: 'Run the example' }, body: { zh: '按 README 的 demo 跑一遍——更重要的是打开源码，跟着它的模块边界读', en: 'Run the README demo — but more importantly open the source and read along its module boundaries' } },
+      ],
+      mobile: null,
+    },
+    links: [
+      { label: 'GitHub', href: 'https://github.com/NousResearch/hermes-agent' },
+    ],
+    screenshots: [
+      { caption: { zh: '它的 Skill 目录结构', en: 'Its skill directory layout' } },
+      { caption: { zh: '示例会话截图', en: 'An example session' } },
+    ],
   },
   {
+    slug: 'codewhale',
     name: 'CodeWhale',
     by: { zh: '国内团队 · 编码智能体', en: 'China-based team · coding agent' },
     kind: { zh: '编码 Agent', en: 'Coding agent' },
@@ -96,8 +135,24 @@ export const agents: Agent[] = [
       zh: '生态面比国际主流窄一些：第三方 MCP 集成、插件生态还在追。有些在国际工具里现成的东西，在这里要自己接。',
       en: 'Narrower ecosystem than the international mainstream: third-party MCP integrations and plugins are still catching up. Some things that come ready-made elsewhere you wire up yourself.',
     },
+    logo: '/assets/logos/codewhale.svg',
+    install: {
+      desktop: [
+        { emoji: '🧩', title: { zh: '装插件', en: 'Install the plugin' }, body: { zh: '在你的 IDE 插件市场里搜 CodeWhale 安装（以官网列出的支持列表为准）', en: 'Search CodeWhale in your IDE extension marketplace (check the official site for the supported list)' } },
+        { emoji: '⌨️', title: { zh: '或者用 CLI', en: 'Or take the CLI' }, body: { zh: '官网有命令行版本，按它的安装页走一遍', en: 'The site also ships a CLI — follow its install page' } },
+        { emoji: '🔑', title: { zh: '登录', en: 'Sign in' }, body: { zh: '用账号登录，接上你常用的国内模型', en: 'Sign in and connect the domestic models you already use' } },
+        { emoji: '🏗️', title: { zh: '开工', en: 'Go' }, body: { zh: '把一个中文 issue 丢给它，先让它读，再动手', en: 'Throw a Chinese issue at it — let it read first, then act' } },
+      ],
+      mobile: null,
+    },
+    links: [{ label: '官网', href: 'https://codewhale.ai' }],
+    screenshots: [
+      { caption: { zh: 'IDE 里的对话面板', en: 'The in-IDE panel' } },
+      { caption: { zh: '它啃中文文档的样子', en: 'It chewing through Chinese docs' } },
+    ],
   },
   {
+    slug: 'claude-code',
     name: 'Claude Code',
     by: { zh: 'Anthropic · 终端智能体', en: 'Anthropic · terminal agent' },
     kind: { zh: '编码 Agent', en: 'Coding agent' },
@@ -127,8 +182,32 @@ export const agents: Agent[] = [
       zh: '长会话要自己会"压上下文"，不然越跑越贵、越跑越钝。它是把好刀，但刀法得自己练。',
       en: 'Long sessions need you to compress context yourself, or it gets more expensive and duller as it goes. A good blade — but the technique is yours to learn.',
     },
+    logo: '/assets/logos/claude48.png',
+    install: {
+      desktop: [
+        { emoji: '🍎', title: { zh: 'macOS', en: 'macOS' }, body: { zh: 'brew install --cask claude，一行搞定', en: 'brew install --cask claude — one line' } },
+        { emoji: '🪟', title: { zh: 'Windows', en: 'Windows' }, body: { zh: '去官网下载安装包，双击走完', en: 'Download the installer from the official site and click through' } },
+        { emoji: '📦', title: { zh: '或者走 npm', en: 'Or via npm' }, body: { zh: 'npm install -g @anthropic-ai/claude-code，装了 Node 就能用', en: 'npm install -g @anthropic-ai/claude-code — needs Node, nothing else' } },
+        { emoji: '🔑', title: { zh: '登录', en: 'Sign in' }, body: { zh: '首次运行 claude，跟着提示登录 Claude 账号（订阅制）', en: 'Run claude once and follow the login prompt (subscription)' } },
+        { emoji: '🚀', title: { zh: '开工', en: 'Go' }, body: { zh: '在项目目录里敲 claude——它读代码、跑命令、改文件，每步都先问你', en: 'Type claude in a project directory — it reads, runs and edits, asking before each step' } },
+      ],
+      mobile: [
+        { emoji: '📱', title: { zh: '网页版', en: 'The web version' }, body: { zh: '没有独立 app，但手机浏览器打开 claude.ai/code 就是它——能看会话、能继续跑任务', en: 'No app, but claude.ai/code in a mobile browser is it — read sessions, keep tasks going' } },
+        { emoji: '🔭', title: { zh: '适合手机做的事', en: 'What mobile is good for' }, body: { zh: '监工：看它跑到哪了、回一句"继续"。动手的活留给电脑', en: 'Supervising: check progress, answer "go on". Leave the heavy lifting to the desktop' } },
+      ],
+    },
+    links: [
+      { label: '官方文档', href: 'https://docs.anthropic.com/en/docs/claude-code' },
+      { label: '网页版', href: 'https://claude.ai/code' },
+    ],
+    screenshots: [
+      { caption: { zh: '终端里的会话', en: 'A session in the terminal' } },
+      { caption: { zh: '权限确认的瞬间', en: 'The permission prompt' } },
+      { caption: { zh: '它自己画的执行计划', en: 'A plan it drafted itself' } },
+    ],
   },
   {
+    slug: 'codex',
     name: 'Codex',
     by: { zh: 'OpenAI · 云端编码智能体', en: 'OpenAI · cloud coding agent' },
     kind: { zh: '编码 Agent', en: 'Coding agent' },
@@ -158,53 +237,131 @@ export const agents: Agent[] = [
       zh: '云端执行意味着代码要离开你的机器。公司代码、未公开的东西，往里放之前先过一遍保密要求——这不是它的问题，是你用它之前必须想清楚的问题。',
       en: 'Cloud execution means code leaves your machine. Company code and unpublished work: run the confidentiality rules before you feed it anything. Not its fault — but your call to make first.',
     },
+    logo: '/assets/logos/openai48.png',
+    install: {
+      desktop: [
+        { emoji: '🖥️', title: { zh: '先有 Node', en: 'Node first' }, body: { zh: '装 Node.js 18+（官网下载或包管理器）', en: 'Install Node 18+ (official site or a package manager)' } },
+        { emoji: '📦', title: { zh: '装 CLI', en: 'Install the CLI' }, body: { zh: 'npm install -g @openai/codex', en: 'npm install -g @openai/codex' } },
+        { emoji: '🔐', title: { zh: '登录', en: 'Sign in' }, body: { zh: 'codex login，用 ChatGPT 账号走一遍', en: 'codex login with your ChatGPT account' } },
+        { emoji: '☁️', title: { zh: '云端开工', en: 'Work in the cloud' }, body: { zh: 'codex cloud 把任务丢到云沙箱——你的电脑只是遥控器', en: 'codex cloud sends the task to the cloud sandbox — your machine is just the remote' } },
+        { emoji: '🍏', title: { zh: '（可选）桌面 app', en: '(Optional) desktop app' }, body: { zh: 'macOS 有原生桌面版，喜欢窗口感的去官网拿', en: 'A native macOS desktop app exists — grab it from the official site if you like windows over terminals' } },
+      ],
+      mobile: [
+        { emoji: '💬', title: { zh: '借道 ChatGPT', en: 'Through ChatGPT' }, body: { zh: '手机上的 ChatGPT 客户端能发起和查看 Codex 云端任务——人在外面也能派活、看结果', en: 'The ChatGPT app can start and watch Codex cloud tasks — dispatch work and check results on the go' } },
+      ],
+    },
+    links: [
+      { label: 'GitHub', href: 'https://github.com/openai/codex' },
+      { label: '开发者文档', href: 'https://developers.openai.com/codex' },
+    ],
+    screenshots: [
+      { caption: { zh: '云任务的面板', en: 'The cloud task panel' } },
+      { caption: { zh: '它写的一次性脚本', en: 'A one-off script it wrote' } },
+    ],
   },
   {
+    slug: 'workbuddy',
     name: 'WorkBuddy',
-    by: { zh: '新一代工作流智能体', en: 'New-generation workflow agent' },
+    by: { zh: '腾讯 · 办公智能体', en: 'Tencent · office agent' },
     kind: { zh: '工作流 Agent', en: 'Workflow agent' },
     fresh: true,
     line: {
-      zh: '把"帮我干活"从写代码扩展到了日常工作流——文档、沟通、任务的自动化。',
-      en: 'Extends "do it for me" from code to the everyday workflow — documents, communication, task automation.',
+      zh: '腾讯的全场景 AI 办公工作台：把任务丢给它，它拆解、读你授权的文件，交付能验收的成果。',
+      en: 'Tencent’s full-scenario AI office workbench: hand it a task, it decomposes, reads the files you authorised, and delivers something you can accept.',
     },
     strengths: [
       {
-        zh: '（初印象）不把自己框死在"编程助手"里，工作流层面的整合方向是对的',
-        en: '(First impressions) It refuses to box itself into "programming assistant" — the workflow-level integration is the right direction',
+        zh: '底层是 CodeBuddy 同一套 Agent 架构，但包装成了非技术人员也会用的形态——内部先有两千名非技术员工用了再发布',
+        en: 'The same agent architecture as CodeBuddy underneath, but wrapped for non-engineers — two thousand of them used it internally before launch',
+      },
+      {
+        zh: '接微信、企微、QQ、飞书、钉钉——办公场景里它就在你已经在用的地方',
+        en: 'Plugs into WeChat, WeCom, QQ, Feishu and DingTalk — it lives where office work already happens',
+      },
+      {
+        zh: '安全边界的设计值得学：只读你授权的文件夹，不是本地部署式的"全盘可读"',
+        en: 'Its security boundary is worth studying: it reads only folders you authorised, not the whole disk the way local deployments do',
       },
     ],
     usage: {
-      zh: '还在试用期。目前拿它处理重复性的文档和流程类杂事，等用满一段时间再认真写它。',
-      en: 'Still on probation. For now it handles repetitive document and process chores; I will write it up properly once I have used it in earnest.',
+      zh: '我现在把它用在两个地方：需要"人话进、成品出"的文档类任务（周报、方案初稿、表格），以及看它怎么做任务拆解——它把 Agent 的产品化边界想得很清楚，这对做 B 端 Agent 的人是活的教材。',
+      en: 'Two uses so far: document-shaped tasks where plain language goes in and a deliverable comes out (weekly reports, draft proposals, spreadsheets), and watching how it decomposes tasks — its productisation of agent boundaries is a live lesson for anyone building B2B agents.',
     },
     caveat: {
-      zh: '新的东西要过一遍数据边界再往深处用——它要接管工作流，就会碰到你的日程、文件和通讯记录。',
-      en: 'A new tool needs a data-boundary pass before deep use — to take over your workflow it will meet your calendar, your files and your messages.',
+      zh: '上线初期是真的"半成品"：登录循环、语言切换 bug、吞上下文都出现过，官方紧急扩容迭代才稳下来。教训是通用的：Agent 产品的口碑窗口比普通软件短得多。',
+      en: 'At launch it was honestly half-baked — login loops, language-switch bugs, context eating — fixed only by emergency scaling and fast iteration. The general lesson: an agent product’s reputation window is far shorter than normal software’s.',
     },
+    logo: '/assets/logos/workbuddy.svg',
+    install: {
+      desktop: [
+        { emoji: '🌐', title: { zh: '网页版直接开工', en: 'The web version' }, body: { zh: '打开 workbuddy.cn，登录后就是工作台——不用装任何东西', en: 'Open workbuddy.cn, sign in, and you have the workbench — nothing to install' } },
+        { emoji: '💬', title: { zh: '绑上聊天工具', en: 'Bind your messengers' }, body: { zh: '接微信 / 企微 / QQ 后，聊天窗口里就能派活', en: 'Connect WeChat / WeCom / QQ and you can dispatch tasks from the chat window' } },
+        { emoji: '📂', title: { zh: '授权文件夹', en: 'Authorise folders' }, body: { zh: '告诉它哪些文件夹能读——它只碰你授权的范围', en: 'Tell it which folders it may read — that is all it touches' } },
+        { emoji: '📄', title: { zh: '派第一个活', en: 'The first task' }, body: { zh: '"把这周的进展整理成周报，引用这几个文档"——然后验收', en: '"Turn this week’s progress into a report, citing these documents" — then accept or send it back' } },
+      ],
+      mobile: [
+        { emoji: '📱', title: { zh: '手机浏览器', en: 'Mobile browser' }, body: { zh: 'workbuddy.cn 在手机浏览器里就是移动版工作台', en: 'workbuddy.cn in a mobile browser is the mobile workbench' } },
+        { emoji: '💬', title: { zh: '或直接微信里说', en: 'Or just say it in WeChat' }, body: { zh: '绑定后，微信里对它说话就是派任务——适合查进度、改一句、要个初稿', en: 'Once bound, messaging it in WeChat is dispatching — good for checking progress, one-line edits, first drafts' } },
+      ],
+    },
+    links: [{ label: '官网', href: 'https://workbuddy.cn' }],
+    screenshots: [
+      { caption: { zh: '任务拆解面板', en: 'The task decomposition panel' } },
+      { caption: { zh: '交付物验收界面', en: 'The deliverable acceptance view' } },
+      { caption: { zh: '微信里派活的场景', en: 'Dispatching from WeChat' } },
+    ],
   },
   {
+    slug: 'muse',
     name: 'Muse',
-    by: { zh: '新一代创作智能体', en: 'New-generation creative agent' },
-    kind: { zh: '创作 Agent', en: 'Creative agent' },
+    by: { zh: 'Meta · 个人生活智能体', en: 'Meta · personal life agent' },
+    kind: { zh: '生活 Agent', en: 'Life agent' },
     fresh: true,
     line: {
-      zh: '把智能体的执行能力和创作场景捆在一起，界面和交互思路都更新。',
-      en: 'Bundles agentic execution with creative work — a fresher take on both interface and interaction.',
+      zh: 'Meta 的个人 AI 智能体：不是"问它怎么做"，是直接"帮我做"——订机票、比价、预约，都在它自己的云端虚拟机里替你完成。',
+      en: 'Meta’s personal AI agent: not "how do I do this" but "do it for me" — flights, price checks, bookings, all completed inside its own cloud VM.',
     },
     strengths: [
       {
-        zh: '（初印象）对"人和 Agent 一起创作"这件事有想法，不是把聊天框换个皮',
-        en: '(First impressions) It has actual ideas about humans and agents creating together — not a chat box with new skin',
+        zh: '每条出站流量都过一道 Sentinel 审批：发邮件、下单前必须你确认——把"给 AI 多少权力"做成了显式开关',
+        en: 'Every outbound action passes a Sentinel approval layer: emails and purchases need your explicit confirm — it made "how much power to hand the AI" an explicit switch',
+      },
+      {
+        zh: '后台异步持续工作：关掉 App 任务照样推进，还有长期记忆记住你的偏好',
+        en: 'It keeps working in the background after you close the app, with long-term memory for your preferences',
+      },
+      {
+        zh: '安全规格给得足：凭证与 Agent 隔离，还开出 30 万美元漏洞赏金',
+        en: 'The security spec is serious: credentials isolated from the agent, plus a 300k bug bounty',
       },
     ],
     usage: {
-      zh: '观察中。创作不是我天天碰的场景，所以我对它的判断会慢一些——等我拿它做出一个完整东西再说。',
-      en: 'Watching. Creative work is not my daily scene, so I will judge slowly — once I have made one complete thing with it.',
+      zh: '它把我一直想验证的问题变成了产品：一个人到底愿意把生活里的哪部分交给 Agent？我观察它比用它多——它的授权边界设计，值得做企业 Agent 的人逐条看。',
+      en: 'It productised the question I always wanted tested: which parts of life will a person actually hand over to an agent? I watch it more than I use it — its authorisation design deserves line-by-line study from anyone building enterprise agents.',
     },
     caveat: {
-      zh: '创作者工具的雷区是"它替你决定了风格"。到底是我在用工具，还是工具在用我，这个要一直盯。',
-      en: 'The minefield for creator tools is "it decided the style for you". Whether the tool is using me or I am using it — that question stays open.',
+      zh: '上线初期的安全事故是真的：擅自改密码、读私人短信，亚马逊已经阻止它代购。它用最快的速度把"信任边界"这个抽象问题变成了具体新闻。',
+      en: 'The early security incidents were real: changing passwords on its own, reading private messages, Amazon blocking its shopping. It turned the abstract "trust boundary" question into concrete news faster than anyone wanted.',
     },
+    logo: '/assets/logos/muse48.png',
+    install: {
+      desktop: [
+        { emoji: '🌐', title: { zh: '网页版', en: 'The web version' }, body: { zh: '打开 muse.ai，用 Meta 账号登录（目前以美国区为主）', en: 'Open muse.ai and sign in with a Meta account (US-focused for now)' } },
+      ],
+      mobile: [
+        { emoji: '🇺🇸', title: { zh: '美区商店', en: 'US app stores' }, body: { zh: 'App Store / Google Play 美区搜 Muse——目前还没开到其他区', en: 'Search Muse in the US App Store / Play Store — other regions are not open yet' } },
+        { emoji: '🪪', title: { zh: '登录', en: 'Sign in' }, body: { zh: 'Meta 账号登录，给它的权限会一条条问你', en: 'Sign in with Meta — it will ask about each permission one by one' } },
+        { emoji: '✈️', title: { zh: '派第一个生活任务', en: 'The first life task' }, body: { zh: '"帮我找下周二飞上海最便宜的航班，先别买"——看它怎么问、怎么找、怎么把决定权留给你', en: '"Find the cheapest flight to Shanghai next Tuesday — do not buy" — watch how it asks, searches, and leaves the decision to you' } },
+        { emoji: '🛡️', title: { zh: '守着确认弹窗', en: 'Mind the confirmations' }, body: { zh: '它要花钱、发信的时候会来找你点头——这一下别顺手点掉', en: 'It comes back for your nod before spending or sending — do not click that one away on reflex' } },
+      ],
+    },
+    links: [{ label: '官网', href: 'https://muse.ai' }],
+    screenshots: [
+      { caption: { zh: '任务进行中的界面', en: 'A task in progress' } },
+      { caption: { zh: 'Sentinel 确认弹窗', en: 'The Sentinel confirmation' } },
+      { caption: { zh: 'App Store 榜单截图', en: 'Its App Store moment' } },
+    ],
   },
 ];
+
+export const agentBySlug = (slug: string) => agents.find((a) => a.slug === slug);

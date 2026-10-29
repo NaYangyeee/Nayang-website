@@ -50,6 +50,12 @@ async function main() {
     url('/badminton', '0.7'),
     url('/books', '0.6'),
     url('/agents', '0.8'),
+    url('/agents/hermes', '0.6'),
+    url('/agents/codewhale', '0.6'),
+    url('/agents/claude-code', '0.6'),
+    url('/agents/codex', '0.6'),
+    url('/agents/workbuddy', '0.6'),
+    url('/agents/muse', '0.6'),
     '</urlset>',
     '',
   ].join('\n');

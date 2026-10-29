@@ -100,6 +100,31 @@ export const ui = {
   'agents.fresh': { zh: '新', en: 'New' },
   'agents.strengths': { zh: '强在哪', en: 'Where it is strong' },
   'agents.usage': { zh: '我的用法', en: 'How I use it' },
+  'agents.caveat': { zh: '注意', en: 'The catch' },
+  'agents.coming': { zh: '截图待补', en: 'Shot coming' },
+  'agents.backToList': { zh: '回到笔记列表', en: 'Back to the notes' },
+  'agents.next': { zh: '下一个', en: 'Next up' },
+  'agents.installTitle': { zh: '把它装起来', en: 'Install it' },
+  'agents.installNote': {
+    zh: '步骤按我写笔记时点的版本为准——这类工具迭代很快，装不动了先看官方文档。',
+    en: 'Steps are as of when I wrote this — these tools iterate fast; if a step breaks, the official docs win.',
+  },
+  'agents.desktop': { zh: '电脑端', en: 'Desktop' },
+  'agents.mobile': { zh: '手机端', en: 'Mobile' },
+  'agents.mobileNone': {
+    zh: '它没有手机端，也不该有——一个给你读源码的框架，装在手机上只会挡住键盘。',
+    en: 'No mobile, and it should not have one — a framework you are meant to read would only be in the way on a phone.',
+  },
+  'agents.screenshots': { zh: '它长什么样', en: 'What it looks like' },
+  'agents.screenshotsNote': {
+    zh: '真实截图整理中',
+    en: 'Real screenshots on the way',
+  },
+  'agents.sources': { zh: '官方来源', en: 'Official sources' },
+  'agents.docNote': {
+    zh: '以上链接都是官方渠道。本页只是个人笔记，任何信息与官方文档冲突时，以官方为准。',
+    en: 'All links above are official. This page is personal notes — where anything conflicts, the official docs win.',
+  },
   'agents.note': {
     zh: '以上全是个人使用笔记，不是评测也不是排名。工具会更新，笔记也会跟着改。',
     en: 'All of the above is personal field notes — not a review, not a ranking. The tools update, and so will these.',

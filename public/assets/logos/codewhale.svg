@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- 原创占位图形（非官方 logo）：鲸鱼 + 代码括号。拿到官方文件后直接替换本文件即可。 -->
+  <circle cx="24" cy="24" r="23" fill="#123f6d"/>
+  <path d="M10 30c-3-5-2-11 2-15l-1-2c-6 5-7 13-2 19l1-2Z" fill="#eaf3fa"/>
+  <path d="M10 30c4 4 9 6 14 6s10-2 14-6l-1-2c-4 4-8 6-13 6s-9-2-13-6l-1 2Z" fill="#eaf3fa"/>
+  <circle cx="37" cy="21" r="1.8" fill="#eaf3fa"/>
+  <path d="M16 24l-3-3 3-3M32 24l3-3-3-3" stroke="#8cc4e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21 26l3-8 3 8" stroke="#8cc4e6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
