@@ -56,6 +56,7 @@ async function main() {
     url('/agents/codex', '0.6'),
     url('/agents/workbuddy', '0.6'),
     url('/agents/muse', '0.6'),
+    url('/product', '0.8'),
     '</urlset>',
     '',
   ].join('\n');

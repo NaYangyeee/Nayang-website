@@ -81,6 +81,12 @@ export const ui = {
 
   'nav.books': { zh: '书架', en: 'Books' },
   'nav.agents': { zh: '智能体笔记', en: 'Agents' },
+  'nav.product': { zh: '产品与项目', en: 'Product' },
+
+  'product.eyebrow': { zh: '另一只手', en: 'The other hand' },
+  'product.requirements': { zh: '我做需求的方式', en: 'How I do requirements' },
+  'product.delivery': { zh: '我带节奏的方式', en: 'How I run delivery' },
+  'product.frameworks': { zh: '常用框架', en: 'The small toolkit' },
 
   'books.eyebrow': { zh: '书房', en: 'The study' },
   'books.title': { zh: '书架', en: 'The bookshelf' },

@@ -85,6 +85,19 @@ export function Header() {
             </li>
             <li>
               <Link
+                to="/product"
+                className={cn(
+                  'rounded-sm px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200',
+                  pathname === '/product'
+                    ? 'font-medium text-sakura-ink'
+                    : 'text-ink-2 hover:text-sakura-ink',
+                )}
+              >
+                {ui('nav.product')}
+              </Link>
+            </li>
+            <li>
+              <Link
                 to="/badminton"
                 className={cn(
                   'rounded-sm px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors duration-200',
@@ -190,6 +203,15 @@ export function Header() {
                   className="block px-4 py-3 text-[0.9375rem] text-ink transition-colors hover:bg-sakura-soft hover:text-sakura-deep"
                 >
                   {ui('nav.agents')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/product"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-3 text-[0.9375rem] text-ink transition-colors hover:bg-sakura-soft hover:text-sakura-deep"
+                >
+                  {ui('nav.product')}
                 </Link>
               </li>
               <li>
