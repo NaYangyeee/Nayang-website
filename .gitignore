@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.local
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.vite/
+tsconfig.tsbuildinfo
+.wrangler/
+
+# Claude Code 会话日志（含敏感信息，绝不入库）
+WORKLOG.md

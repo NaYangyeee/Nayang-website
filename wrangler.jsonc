@@ -1,0 +1,23 @@
+{
+  // ===========================================================================
+  // Cloudflare Workers Static Assets configuration.
+  //
+  // Committed ON PURPOSE. Without it, `wrangler deploy` detects an
+  // unconfigured project and runs its interactive setup, which in a CI build
+  // silently falls back to defaults and regenerates a config on every deploy.
+  // Pinning it here makes deploys deterministic and reviewable.
+  // ===========================================================================
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nayang-website",
+  "compatibility_date": "2026-10-01",
+
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
+
+  // This is a single-page site, so there is nothing to catch — but declaring
+  // it costs nothing and keeps the config identical in shape to the deploy
+  // path this project's tooling was already exercised on.
+  "not_found_handling": "none"
+}

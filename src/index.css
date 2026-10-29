@@ -1,0 +1,263 @@
+@import 'tailwindcss';
+
+@import '@fontsource-variable/playfair-display/index.css';
+@import '@fontsource-variable/inter/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';
+
+/* ===========================================================================
+   DESIGN SYSTEM — 崔力娜
+   ===========================================================================
+
+   The brief was "浅灰 + 樱花粉 + 一点天蓝 + 黑边，商业成熟御姐".
+
+   Those five words pull in two directions, and the whole design lives in
+   resolving them. Sakura pink is the part that most easily goes wrong: used
+   as a field colour it reads as sweet, decorative, junior — the exact
+   opposite of 成熟. So the rule here is that pink is never a background for
+   anything larger than a chip. It appears as a rule under a heading, a
+   button fill, a chip, a hairline. The page is carried by light grey and
+   near-black; the pink is punctuation.
+
+   The 黑边 is what buys the authority. A 1px true-black edge on cards and
+   buttons is an unusual choice on a light page — most light designs use a
+   soft grey — and it is precisely that hardness which keeps the palette from
+   going soft. Black edge + pink accent is editorial; grey edge + pink accent
+   is a greeting card.
+
+   Sky blue is deliberately scarce. It exists so that measured results have a
+   colour of their own, distinct from the brand accent, which means a number
+   never has to compete with a call to action for the same attention.
+
+   TYPE
+   ----
+   Playfair Display for headings — a high-contrast serif, which is the single
+   fastest way to read "established" rather than "bootcamp". Inter for body,
+   because long Chinese-English mixed prose needs a neutral workhorse. The
+   CJK stack is listed after every Latin face so mixed sentences never fall
+   back to a system default mid-line.
+
+   CONTRAST
+   --------
+   Checked by `npm run check:contrast`, not by eye. Every text token clears
+   4.5:1 on the surface it is used on; body text clears 15:1. A pink that
+   looks right and fails contrast is a pink that is wrong.
+   =========================================================================== */
+
+@theme {
+  /* --- Surfaces: light grey ground, white cards --- */
+  --color-surface: #ffffff;
+  --color-surface-2: #f6f6f7; /* the light grey band */
+  --color-surface-3: #ffffff; /* elevated card */
+  --color-surface-sunken: #efeff1;
+  --color-surface-ink: #141418; /* the one dark band, for contrast */
+
+  /* --- Text --- */
+  --color-ink: #141418; /* 17.6:1 on white */
+  --color-ink-2: #5a5a64; /* 6.8:1 — safe for real prose */
+  --color-ink-3: #8a8a93; /* decorative / large only */
+  --color-ink-invert: #f7f6f7;
+
+  /* --- Lines. `line-hard` is the black edge the brief asked for. --- */
+  --color-line: #e3e3e6;
+  --color-line-2: #ededf0;
+  --color-line-hard: #141418;
+
+  /* --- Sakura: the accent. Three jobs, three values. --- */
+  --color-sakura: #e4849f; /* fills, chips, rules — never text */
+  --color-sakura-ink: #b03a60; /* 5.8:1 — pink as readable text */
+  --color-sakura-deep: #8d2c4c; /* 7.2:1 on the soft tint */
+  --color-sakura-soft: #fdeef2; /* the only pink allowed as a field */
+
+  /* --- Sky: reserved for measured results. --- */
+  --color-sky: #7fb4d8;
+  --color-sky-ink: #1f6391; /* 6.3:1 */
+  --color-sky-soft: #eaf3fa;
+
+  /* --- Type --- */
+  --font-cjk:
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC',
+    sans-serif;
+  --font-display:
+    'Playfair Display Variable', 'Playfair Display', Georgia, 'Times New Roman', serif,
+    var(--font-cjk);
+  --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, var(--font-cjk);
+  --font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace, var(--font-cjk);
+
+  /* --- Motion --- */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Layout --- */
+  --breakpoint-3xl: 112rem;
+}
+
+/* The single dark band, used for the contact panel. Same tokens redefined,
+   so a component written once renders correctly in both. */
+.tone-ink {
+  --color-surface: #141418;
+  --color-surface-2: #1c1c21;
+  --color-surface-3: #22222a;
+  --color-surface-sunken: #0e0e11;
+
+  --color-ink: #f7f6f7;
+  --color-ink-2: #a8a8b2;
+  --color-ink-3: #74747e;
+
+  --color-line: #32323b;
+  --color-line-2: #26262e;
+  --color-line-hard: #4a4a56;
+
+  /* On near-black the mid pink is too dim to read; this is the brighter
+     sibling, the same move Apple makes with its blue in dark mode. */
+  --color-sakura-ink: #f3a7bd;
+  --color-sakura-soft: #2a1a21;
+  --color-sky-ink: #8cc4e6;
+  --color-sky-soft: #15222b;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    /* Shared by the fixed header and the padding that clears it. One value,
+       so the two can never drift apart. */
+    --header-h: 3.75rem;
+  }
+
+  @media (width >= 48rem) {
+    :root {
+      --header-h: 4.5rem;
+    }
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-surface-2);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Headings carry the serif. Tight tracking, because Playfair at display
+     sizes defaults to looser than it wants to be. */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+  }
+
+  ::selection {
+    background-color: var(--color-sakura);
+    color: #ffffff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sakura-ink);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+   --------------------------------------------------------------------------- */
+
+@utility shell {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 80rem) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 4.5rem;
+
+  @media (width >= 48rem) {
+    padding-block: 7rem;
+  }
+}
+
+/* The card. Black hairline, no shadow at rest — the edge does the work a
+   shadow usually does, which is what keeps the page feeling printed rather
+   than floated. */
+@utility card {
+  background-color: var(--color-surface-3);
+  border: 1px solid var(--color-line-hard);
+  box-shadow: 4px 4px 0 0 var(--color-line-2);
+}
+
+/* Section eyebrow: small caps with a pink rule. This is the one place the
+   pink appears on every section, which is what makes it read as a brand
+   colour rather than a decoration. */
+@utility label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-sakura-ink);
+
+  &::before {
+    content: '';
+    width: 1.75rem;
+    height: 2px;
+    background-color: var(--color-sakura);
+  }
+}
+
+/* Measured numbers. Sky, never pink — a result is not a call to action. */
+@utility stat-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--color-sky-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+@utility chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-line-hard);
+  padding: 0.25rem 0.625rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-ink);
+  background-color: var(--color-surface-3);
+}
+
+@utility chip-pink {
+  background-color: var(--color-sakura-soft);
+  color: var(--color-sakura-deep);
+  border-color: var(--color-sakura-ink);
+}
