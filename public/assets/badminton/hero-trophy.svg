@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#24351c"/>
+      <stop offset="45%" stop-color="#152012"/>
+      <stop offset="100%" stop-color="#0c0f0a"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7e6a8"/>
+      <stop offset="35%" stop-color="#d9ad4e"/>
+      <stop offset="70%" stop-color="#a67c22"/>
+      <stop offset="100%" stop-color="#6f5013"/>
+    </linearGradient>
+    <linearGradient id="goldRim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fdf3cf"/>
+      <stop offset="50%" stop-color="#e8c56a"/>
+      <stop offset="100%" stop-color="#9c7420"/>
+    </linearGradient>
+    <linearGradient id="shaft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e9c468"/>
+      <stop offset="100%" stop-color="#8a6a26"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f5df9e" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#f5df9e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shuttle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbfaf6"/>
+      <stop offset="100%" stop-color="#d9d6cc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 夜场底 -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- 隐约的地板线 -->
+  <g stroke="#7ba832" stroke-width="2" opacity="0.16">
+    <rect x="80" y="80" width="1440" height="740" fill="none"/>
+    <line x1="800" y1="80" x2="800" y2="820"/>
+    <rect x="440" y="240" width="720" height="420" fill="none"/>
+    <line x1="80" y1="450" x2="1520" y2="450" stroke-dasharray="14 12" opacity="0.3"/>
+    <line x1="800" y1="240" x2="800" y2="450" opacity="0.1"/>
+    <line x1="800" y1="450" x2="800" y2="660" opacity="0.1"/>
+    <line x1="440" y1="450" x2="440" y2="660" opacity="0.1"/>
+    <line x1="1160" y1="240" x2="1160" y2="450" opacity="0.1"/>
+  </g>
+
+  <!-- 奖杯身后的光 -->
+  <ellipse cx="800" cy="430" rx="430" ry="360" fill="url(#glow)"/>
+
+  <!-- 后景的球拍剪影 -->
+  <g transform="rotate(-24 1180 260)" opacity="0.9">
+    <ellipse cx="1180" cy="230" rx="105" ry="88" fill="none" stroke="#0a0d08" stroke-width="14"/>
+    <g stroke="#0a0d08" stroke-width="3" opacity="0.9">
+      <line x1="1085" y1="230" x2="1275" y2="230"/>
+      <line x1="1110" y1="175" x2="1110" y2="285"/>
+      <line x1="1152" y1="160" x2="1152" y2="300"/>
+      <line x1="1195" y1="160" x2="1195" y2="300"/>
+      <line x1="1240" y1="175" x2="1240" y2="285"/>
+      <line x1="1095" y1="200" x2="1265" y2="260"/>
+      <line x1="1095" y1="260" x2="1265" y2="200"/>
+    </g>
+    <path d="M1180 318 L1180 430" stroke="#0a0d08" stroke-width="13" stroke-linecap="round"/>
+    <rect x="1162" y="430" width="36" height="56" rx="12" fill="#0a0d08"/>
+  </g>
+
+  <!-- 奖杯 -->
+  <g>
+    <!-- 基座与投影 -->
+    <ellipse cx="800" cy="700" rx="240" ry="34" fill="#050705" opacity="0.5"/>
+    <rect x="652" y="640" width="296" height="30" rx="8" fill="url(#goldRim)"/>
+    <rect x="684" y="610" width="232" height="30" rx="6" fill="url(#gold)"/>
+    <!-- 柱 -->
+    <rect x="768" y="560" width="64" height="52" fill="url(#shaft)"/>
+    <ellipse cx="800" cy="560" rx="46" ry="12" fill="url(#goldRim)"/>
+    <!-- 杯体 -->
+    <path d="M676 380 Q676 560 800 562 Q924 560 924 380 Z" fill="url(#gold)"/>
+    <path d="M676 380 Q676 560 800 562 Q924 560 924 380" fill="none" stroke="#5e450f" stroke-width="4" opacity="0.5"/>
+    <!-- 杯口 -->
+    <ellipse cx="800" cy="380" rx="124" ry="26" fill="url(#goldRim)"/>
+    <ellipse cx="800" cy="378" rx="108" ry="19" fill="#241c0a" opacity="0.55"/>
+    <ellipse cx="800" cy="376" rx="108" ry="19" fill="none" stroke="#fdf3cf" stroke-width="2" opacity="0.7"/>
+    <!-- 双耳 -->
+    <path d="M676 396 Q600 400 606 470 Q612 528 682 512" fill="none" stroke="url(#goldRim)" stroke-width="17" stroke-linecap="round"/>
+    <path d="M924 396 Q1000 400 994 470 Q988 528 918 512" fill="none" stroke="url(#goldRim)" stroke-width="17" stroke-linecap="round"/>
+    <!-- 高光 -->
+    <path d="M712 392 Q706 470 726 540" stroke="#fdf3cf" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+    <!-- 铭牌 -->
+    <rect x="760" y="420" width="80" height="52" rx="6" fill="#f7e6a8" opacity="0.9"/>
+    <rect x="766" y="426" width="68" height="40" rx="4" fill="none" stroke="#6f5013" stroke-width="2.5"/>
+    <!-- 铭牌上的球拍线小徽记 -->
+    <ellipse cx="800" cy="446" rx="15" ry="11" fill="none" stroke="#6f5013" stroke-width="2"/>
+    <g stroke="#6f5013" stroke-width="1.2">
+      <line x1="787" y1="446" x2="813" y2="446"/>
+      <line x1="800" y1="437" x2="800" y2="455"/>
+    </g>
+  </g>
+
+  <!-- 地上的羽毛球（三只，最大的一只斜靠在基座上） -->
+  <g transform="translate(600 664) rotate(-12)">
+    <ellipse cx="0" cy="30" rx="26" ry="7" fill="#050705" opacity="0.4"/>
+    <path d="M0 -34 C-10 -26 -13 -8 -13 12 L13 12 C13 -8 10 -26 0 -34 Z" fill="url(#shuttle)"/>
+    <g stroke="#8a8f86" stroke-width="1.6" opacity="0.7">
+      <line x1="-8" y1="-24" x2="-11" y2="12"/>
+      <line x1="-4" y1="-28" x2="-5.5" y2="12"/>
+      <line x1="0" y1="-30" x2="0" y2="12"/>
+      <line x1="4" y1="-28" x2="5.5" y2="12"/>
+      <line x1="8" y1="-24" x2="11" y2="12"/>
+    </g>
+    <path d="M-13 -14 A13 13 0 0 1 13 -14 L13 -12 A11 11 0 0 0 -13 -12 Z" fill="#7ba832"/>
+    <circle cx="0" cy="-28" r="8" fill="#f4ead0"/>
+  </g>
+  <g transform="translate(1010 676) rotate(8)">
+    <ellipse cx="0" cy="26" rx="20" ry="6" fill="#050705" opacity="0.4"/>
+    <path d="M0 -26 C-8 -20 -10 -7 -10 9 L10 9 C10 -7 8 -20 0 -26 Z" fill="url(#shuttle)"/>
+    <g stroke="#8a8f86" stroke-width="1.3" opacity="0.7">
+      <line x1="-6" y1="-18" x2="-8.5" y2="9"/>
+      <line x1="0" y1="-22" x2="0" y2="9"/>
+      <line x1="6" y1="-18" x2="8.5" y2="9"/>
+    </g>
+    <path d="M-10 -10 A10 10 0 0 1 10 -10 L10 -9 A9 9 0 0 0 -10 -9 Z" fill="#7ba832"/>
+    <circle cx="0" cy="-21" r="6" fill="#f4ead0"/>
+  </g>
+  <g transform="translate(942 688) rotate(20)" opacity="0.9">
+    <ellipse cx="0" cy="22" rx="15" ry="5" fill="#050705" opacity="0.4"/>
+    <path d="M0 -20 C-6 -15 -8 -5 -8 7 L8 7 C8 -5 6 -15 0 -20 Z" fill="url(#shuttle)"/>
+    <g stroke="#8a8f86" stroke-width="1" opacity="0.7">
+      <line x1="-4" y1="-14" x2="-6" y2="7"/>
+      <line x1="0" y1="-17" x2="0" y2="7"/>
+      <line x1="4" y1="-14" x2="6" y2="7"/>
+    </g>
+    <path d="M-8 -8 A8 8 0 0 1 8 -8 L8 -7 A7 7 0 0 0 -8 -7 Z" fill="#7ba832"/>
+    <circle cx="0" cy="-16" r="5" fill="#f4ead0"/>
+  </g>
+
+  <!-- 飘浮的金色星点 -->
+  <g fill="#f5df9e">
+    <path d="M420 220 l4 9 9 4 -9 4 -4 9 -4 -9 -9 -4 9 -4 Z" opacity="0.8"/>
+    <path d="M1180 480 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z" opacity="0.6"/>
+    <path d="M640 200 l3 6 6 3 -6 3 -3 6 -3 -6 -6 -3 6 -3 Z" opacity="0.5"/>
+    <path d="M990 260 l4 8 8 4 -8 4 -4 8 -4 -8 -8 -4 8 -4 Z" opacity="0.7"/>
+    <path d="M360 420 l2.5 5.5 5.5 2.5 -5.5 2.5 -2.5 5.5 -2.5 -5.5 -5.5 -2.5 5.5 -2.5 Z" opacity="0.45"/>
+    <path d="M1230 360 l2.5 5.5 5.5 2.5 -5.5 2.5 -2.5 5.5 -2.5 -5.5 -5.5 -2.5 5.5 -2.5 Z" opacity="0.5"/>
+  </g>
+
+  <!-- 底部渐晕，让页头文字有地可站 -->
+  <rect width="1600" height="900" fill="url(#bg)" opacity="0.35"/>
+</svg>

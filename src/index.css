@@ -121,10 +121,8 @@
   --color-sky-soft: #15222b;
 }
 
-/* The badminton page's tone: court at night. The same utilities keep
-   working, but the accent remaps from sakura to court green, so the page
-   feels like a different world (a night match) while staying one system.
-   Every value here clears the same contrast targets as the light set. */
+/* The badminton page's tone: the court at night. Kept for the hero, which
+   sits on a photograph and needs light text over a dark scrim. */
 .tone-court {
   --color-surface: #0e100d;
   --color-surface-2: #151814;
@@ -145,6 +143,32 @@
   --color-sakura-deep: #d8f2a0;
   --color-sky-ink: #8cc4e6;
   --color-sky-soft: #15222b;
+}
+
+/* The page body's tone: the same court, in daylight. Light grey ground,
+   dark grey ink and edges, court green accent — the sports page stays
+   sports, but it now sits inside the same document as everything else
+   instead of switching the lights off. */
+.tone-court-light {
+  --color-surface: #f4f4f2;
+  --color-surface-2: #eaeae6;
+  --color-surface-3: #ffffff;
+  --color-surface-sunken: #e3e3df;
+
+  --color-ink: #2b2e2a;
+  --color-ink-2: #5c615a;
+  --color-ink-3: #8a8f86;
+
+  --color-line: #d8d8d2;
+  --color-line-2: #e8e8e3;
+  --color-line-hard: #2b2e2a;
+
+  --color-sakura: #7ba832;
+  --color-sakura-ink: #467022;
+  --color-sakura-soft: #e9efdc;
+  --color-sakura-deep: #3a5c1c;
+  --color-sky-ink: #1f6391;
+  --color-sky-soft: #eaf3fa;
 }
 
 @layer base {

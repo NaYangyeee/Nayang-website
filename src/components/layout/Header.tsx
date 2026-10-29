@@ -11,9 +11,9 @@ import { cn } from '@/lib/utils';
  * At the very top it floats transparently over the hero; past that it needs
  * an opaque ground or the nav text sits on whatever scrolls underneath.
  *
- * On the badminton page it adopts `.tone-court`, because that page is dark
- * from its first pixel and the near-black text of the light header would
- * simply disappear.
+ * On the badminton page the bar follows the page's own two tones: dark
+ * over the hero photograph, light once the page scrolls into its light
+ * grey body — the nav text always has a ground to sit on.
  */
 export function Header() {
   const { ui, tl, locale, setLocale } = useLocale();
@@ -40,7 +40,10 @@ export function Header() {
     <header
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ease-out-expo',
-        onCourt && 'tone-court',
+        // Over the badminton hero the bar floats on a dark photograph, so it
+        // carries the dark tone with light text; once the page scrolls into
+        // the light body, it flips to the light court tone.
+        onCourt && (scrolled ? 'tone-court-light' : 'tone-court'),
         scrolled
           ? 'border-b border-line bg-surface/85 backdrop-blur-xl'
           : 'border-b border-transparent',
@@ -180,7 +183,7 @@ export function Header() {
             aria-label="Primary"
             className={cn(
               'absolute inset-x-3 border border-line-hard bg-surface p-2 shadow-[6px_6px_0_0_var(--color-line-2)]',
-              onCourt && 'tone-court',
+              onCourt && (scrolled ? 'tone-court-light' : 'tone-court'),
             )}
             style={{ top: 'calc(var(--header-h) + 0.5rem)' }}
           >

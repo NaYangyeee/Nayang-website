@@ -51,6 +51,7 @@ function tokensIn(css, blockPattern) {
 const css = await readFile(join(ROOT, 'src', 'index.css'), 'utf8');
 const light = tokensIn(css, /@theme\s*\{[\s\S]*?\n\}/);
 const dark = tokensIn(css, /\.tone-ink\s*\{[\s\S]*?\n\}/);
+const courtLight = tokensIn(css, /\.tone-court-light\s*\{[\s\S]*?\n\}/);
 
 // [tone, fg token, bg token, min ratio, what it is]
 const CHECKS = [
@@ -74,6 +75,15 @@ const CHECKS = [
   ['dark', 'sakura-ink', 'surface', 4.5, 'sakura text on ink band'],
   ['dark', 'sakura-ink', 'surface-2', 4.5, 'sakura text on ink card'],
   ['dark', 'sky-ink', 'sky-soft', 4.5, 'sky text on ink sky tint'],
+
+  ['court', 'ink', 'surface', 7, 'body text on court ground'],
+  ['court', 'ink', 'surface-2', 7, 'body text on court band'],
+  ['court', 'ink', 'surface-3', 7, 'body text on court card'],
+  ['court', 'ink-2', 'surface', 4.5, 'secondary text on court'],
+  ['court', 'ink-3', 'surface', 3, 'tertiary on court'],
+  ['court', 'sakura-ink', 'surface', 4.5, 'court green text on court'],
+  ['court', 'sakura-deep', 'sakura-soft', 4.5, 'court green on court tint'],
+  ['court', 'line-hard', 'surface', 3, 'dark grey edge on court'],
 ];
 
 // Pairings not expressible as two tokens, asserted directly.
@@ -88,7 +98,7 @@ let failed = 0;
 const rows = [];
 
 for (const [tone, fg, bg, min, what] of CHECKS) {
-  const set = tone === 'light' ? light : dark;
+  const set = tone === 'light' ? light : tone === 'court' ? courtLight : dark;
   const fgHex = set[fg];
   const bgHex = set[bg];
   if (!fgHex || !bgHex) {

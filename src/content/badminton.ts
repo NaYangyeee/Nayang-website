@@ -16,9 +16,13 @@ export const badminton = {
   hero: {
     /** The giant back-wall word. English, because Oswald has no CJK glyphs. */
     wall: 'BADMINTON',
-    /** Full-bleed backdrop. Same photo family as the gallery, so the page
-        opens inside the court instead of in a text document. */
-    backdrop: '/assets/badminton/badminton-06.jpg',
+    /**
+     * Full-bleed backdrop. A designed champion scene — trophy, racket and
+     * shuttlecocks on a night court — because it has to read the same way
+     * to every visitor: a photo of an award certificate only speaks to
+     * people who can read the language on the wall behind it.
+     */
+    backdrop: '/assets/badminton/hero-trophy.svg',
     title: { zh: '羽球生涯', en: 'Badminton, seriously' } satisfies L,
     lede: {
       zh: '工作之外打得最久、最认真的一件事。故事会陆续补上——场子已经搭好。',
@@ -88,6 +92,7 @@ export const badminton = {
     { src: '/assets/badminton/badminton-03.jpg' },
     { src: '/assets/badminton/badminton-04.jpg' },
     { src: '/assets/badminton/badminton-05.jpg' },
+    { src: '/assets/badminton/badminton-06.jpg' },
     { src: '/assets/badminton/badminton-07.jpg' },
     { src: '/assets/badminton/badminton-08.jpg' },
     { src: '/assets/badminton/badminton-09.jpg' },

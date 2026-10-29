@@ -102,7 +102,7 @@ function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={item.caption ? tl(item.caption) : ui('badminton.photo')}
-      className="fixed inset-0 z-80 grid place-items-center bg-surface-sunken/95 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-80 grid place-items-center bg-ink/40 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <figure className="relative max-h-full" onClick={(e) => e.stopPropagation()}>
@@ -182,9 +182,10 @@ export default function Badminton() {
         };
 
   return (
-    <div className="tone-court bg-surface text-ink">
-      {/* Hero — opens inside the court, photograph first. */}
-      <section className="relative overflow-hidden">
+    <div className="tone-court-light bg-surface text-ink">
+      {/* Hero — the one dark stretch of the page: it sits on a photograph,
+          so it keeps the night-court tone with light text over the scrim. */}
+      <section className="tone-court relative overflow-hidden">
         <div aria-hidden="true" className="absolute inset-0">
           <img
             src={badminton.hero.backdrop}
@@ -192,9 +193,19 @@ export default function Badminton() {
             className="h-full w-full object-cover"
             loading="eager"
           />
-          {/* Two gradients: darken for the headline, fade down into the
-              page's own colour so the photo ends where the content begins. */}
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-sunken/80 via-surface-sunken/55 to-surface" />
+          {/*
+            Darken for the headline, then fade down into the page's light
+            grey so the photograph ends exactly where the daylit content
+            begins. Literal colours on purpose: this gradient has to end in
+            the body tone regardless of which tone the hero section carries.
+          */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                'linear-gradient(to bottom, rgba(10,12,9,0.82), rgba(10,12,9,0.55) 55%, #f4f4f2 100%)',
+            }}
+          />
         </div>
 
         <motion.p
@@ -319,7 +330,7 @@ export default function Badminton() {
                     />
                   </button>
                   {item.caption && (
-                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-surface-sunken/85 to-transparent p-3 pt-10 font-sport text-[0.8125rem] font-semibold tracking-wide text-ink uppercase">
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-10 font-sport text-[0.8125rem] font-semibold tracking-wide text-white uppercase">
                       {tl(item.caption)}
                     </span>
                   )}
