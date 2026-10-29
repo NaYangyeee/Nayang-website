@@ -96,6 +96,11 @@ export function RacketTrail() {
     window.addEventListener('resize', fit);
 
     const spawn = (x: number, y: number) => {
+      // Never spawn inside the strip where a shuttle would clip out of the
+      // viewport immediately — the bottom edge is where the stuck streaks
+      // used to live: slow trickles of birds spawning near the edge and
+      // hanging there for their whole lifetime.
+      if (y > window.innerHeight - 70) return;
       if (particles.length >= TRAIL_COUNT) particles.shift();
       particles.push({
         x,
@@ -122,19 +127,30 @@ export function RacketTrail() {
       lastX = e.clientX;
       lastY = e.clientY;
     };
+    // Leaving the window (or the tab losing focus) must clear everything:
+    // a wake frozen mid-air when the pointer is gone reads as a bug, and
+    // the next re-entry should start from a clean court.
     const onLeave = () => {
       lastX = -Infinity;
       lastY = -Infinity;
+      particles.length = 0;
+    };
+    const onHide = () => {
+      if (document.hidden) onLeave();
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     document.addEventListener('mouseleave', onLeave);
+    window.addEventListener('blur', onLeave);
+    document.addEventListener('visibilitychange', onHide);
 
     const tick = (now: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
         const age = now - p.born;
-        if (age > LIFE) {
+        // Expire by time OR by position — a shuttle that has fallen out of
+        // the viewport is dead, whatever its age says.
+        if (age > LIFE || p.y > window.innerHeight + 60) {
           particles.splice(i, 1);
           continue;
         }
@@ -181,6 +197,8 @@ export function RacketTrail() {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onMove);
       document.removeEventListener('mouseleave', onLeave);
+      window.removeEventListener('blur', onLeave);
+      document.removeEventListener('visibilitychange', onHide);
       window.removeEventListener('resize', fit);
       root.style.cursor = prevCursor;
       sheet.remove();
