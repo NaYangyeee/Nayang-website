@@ -6,6 +6,7 @@ import { profile } from '@/content/site';
 import { useSeo } from '@/hooks/useSeo';
 import { useLocale } from '@/i18n/LocaleProvider';
 import { Reveal } from '@/components/primitives/Reveal';
+import { RacketTrail } from '@/components/sections/RacketTrail';
 
 /**
  * The badminton page.
@@ -352,6 +353,10 @@ export default function Badminton() {
           onNav={nav}
         />
       )}
+
+      {/* The racket cursor and its trail. Mounted last so the overlay sits
+          above the court but below nothing clickable — it is pointer-none. */}
+      <RacketTrail />
     </div>
   );
 }
