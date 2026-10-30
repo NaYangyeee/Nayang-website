@@ -57,9 +57,19 @@ export function Contact() {
         </Reveal>
 
         <Reveal>
-          <p className="mt-8 font-mono text-[0.75rem] text-ink-3">
-            {tl(profile.location)} · {tl(profile.availability)}
-          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <p className="font-mono text-[0.75rem] text-ink-3">
+              {tl(profile.location)} · {tl(profile.availability)}
+            </p>
+            <a
+              href="/assets/CuiLina-CV.pdf"
+              download
+              className="inline-flex items-center gap-2 border border-line-hard bg-surface-2 px-4 py-2 text-[0.875rem] font-medium text-ink transition-[transform,box-shadow] duration-200 ease-out-expo hover:-translate-y-0.5 hover:shadow-[3px_3px_0_0_var(--color-line-2)]"
+            >
+              {ui('contact.cv')}
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </Reveal>
       </div>
     </section>

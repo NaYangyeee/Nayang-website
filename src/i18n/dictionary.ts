@@ -154,6 +154,15 @@ export const ui = {
     en: 'Brand poster · illustration, not a portrait',
   },
 
+  'contact.cv': { zh: '下载简历', en: 'Download CV' },
+
+  'nf.title': { zh: '这里没有页面', en: 'No page here' },
+  'nf.body': {
+    zh: '这个地址打不出来东西——可能是链接写错了。主页没丢。',
+    en: 'That address leads nowhere — probably a typo in the link. The home page is fine.',
+  },
+  'nf.home': { zh: '回到主页', en: 'Back to the home page' },
+
   'footer.built': {
     zh: '使用 React、TypeScript 与 Vite 构建。静态托管，无任何追踪。',
     en: 'Built with React, TypeScript and Vite. Statically hosted, no tracking.',

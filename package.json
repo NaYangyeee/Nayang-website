@@ -16,7 +16,9 @@
     "check:keys": "node scripts/check-ui-keys.mjs",
     "check": "npm run check:assets && npm run typecheck && npm run check:contrast && npm run build && npm run check:classes",
     "format": "prettier --write \"src/**/*.{ts,tsx}\" \"scripts/*.mjs\" \"*.{json,ts,html}\"",
-    "shot": "node scripts/shot.mjs"
+    "shot": "node scripts/shot.mjs",
+    "og": "node scripts/make-og.mjs",
+    "cv": "node scripts/make-cv.mjs"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.5",

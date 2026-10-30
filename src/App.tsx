@@ -7,6 +7,8 @@ import Books from '@/pages/Books';
 import Agents from '@/pages/Agents';
 import AgentDetail from '@/pages/AgentDetail';
 import Product from '@/pages/Product';
+import Cv from '@/pages/Cv';
+import NotFound from '@/pages/NotFound';
 
 /**
  * Two pages: the career document and the badminton court.
@@ -28,6 +30,8 @@ export default function App() {
             <Route path="agents" element={<Agents />} />
             <Route path="agents/:slug" element={<AgentDetail />} />
             <Route path="product" element={<Product />} />
+            <Route path="cv" element={<Cv />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

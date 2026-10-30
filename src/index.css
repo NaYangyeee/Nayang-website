@@ -238,6 +238,29 @@
   [id] {
     scroll-margin-top: calc(var(--header-h) + 1rem);
   }
+
+  /* Print: the chrome disappears and the document is all that is left.
+     Used by the /cv page — printing it should yield a paper résumé,
+     not a screenshot of the website. */
+  @media print {
+    header,
+    footer,
+    [href='#main'] {
+      display: none !important;
+    }
+    main {
+      padding-top: 0 !important;
+    }
+    .cv-page {
+      background: #ffffff !important;
+    }
+    .cv-h {
+      break-after: avoid;
+    }
+    article {
+      break-inside: avoid;
+    }
+  }
 }
 
 /* ---------------------------------------------------------------------------
